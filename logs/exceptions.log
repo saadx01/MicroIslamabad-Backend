@@ -1,0 +1,42 @@
+[2025-07-22T12:43:28.465Z] error: uncaughtException: cors is not defined
+ReferenceError: cors is not defined
+    at file:///F:/Web%20Development/NAVTC/Final%20Project/MicroIslamabad-Project/Backend/index.js:39:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)
+[2025-07-22T12:44:51.802Z] error: uncaughtException: cors is not defined
+ReferenceError: cors is not defined
+    at file:///F:/Web%20Development/NAVTC/Final%20Project/MicroIslamabad-Project/Backend/index.js:38:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)
+[2025-07-22T12:46:24.295Z] error: uncaughtException: cors is not defined
+ReferenceError: cors is not defined
+    at file:///F:/Web%20Development/NAVTC/Final%20Project/MicroIslamabad-Project/Backend/index.js:19:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)
+[2025-07-22T12:46:32.716Z] error: uncaughtException: cors is not defined
+ReferenceError: cors is not defined
+    at file:///F:/Web%20Development/NAVTC/Final%20Project/MicroIslamabad-Project/Backend/index.js:19:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)
+[2025-07-22T12:47:26.309Z] error: uncaughtException: cors is not defined
+ReferenceError: cors is not defined
+    at file:///F:/Web%20Development/NAVTC/Final%20Project/MicroIslamabad-Project/Backend/index.js:19:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)
+[2025-07-22T12:48:16.294Z] error: uncaughtException: cors is not defined
+ReferenceError: cors is not defined
+    at file:///F:/Web%20Development/NAVTC/Final%20Project/MicroIslamabad-Project/Backend/index.js:19:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)
+[2025-07-22T12:48:23.762Z] error: uncaughtException: cors is not defined
+ReferenceError: cors is not defined
+    at file:///F:/Web%20Development/NAVTC/Final%20Project/MicroIslamabad-Project/Backend/index.js:19:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:234:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:473:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:123:5)
