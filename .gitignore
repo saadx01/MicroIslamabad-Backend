@@ -1,5 +1,31 @@
-# Node modules
+# node modules
 node_modules/
 
-# Environment variables
-.env
+# env
+.env*
+!.env.example
+
+# logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs/editors
+.vscode/
+.idea/
+
+# coverage/testing
+coverage/
+
+# temporary files
+*.local
+*.bak
+*.tmp
+
+# MongoDB dump files
+dump/
