@@ -10,6 +10,7 @@ import logger from "./utils/logger.js";
 import cors from "cors";
 
 
+
 const app = express();
 app.use(express.json());
 
@@ -40,10 +41,10 @@ app.use(
   })
 );
 
-// app.get("/", (req, res) => {
-//   res.send("Welcome to MicroIslamabad Backend API");
-// });
-
+app.get("/", (req, res) => {
+  res.send("Welcome to MicroIslamabad Backend API");
+});
+  
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/blogs", blogRoutes);
 
