@@ -1,65 +1,39 @@
 import express from "express";
-import { connectToDatabase } from "./connections/db.js";
-import { config } from "dotenv";
-import userRoutes from "./routes/userRoute.js";
-import blogRoutes from "./routes/blogRoute.js";
-
-import { errorHandler } from './middlewares/errorHandler.js';
-import morgan from "morgan";
-import logger from "./utils/logger.js";
 import cors from "cors";
+import dotenv from "dotenv";
 
-// Load env variables first
-config();
-console.log("Frontend url from env:", process.env.FRONTEND_URL);
+dotenv.config();
 
 const app = express();
 
-// Seting up CORS very early
-// app.use(cors({
-//   origin: [
-//     "http://localhost:3000",
-//     "http://localhost:5173",
-//     "https://micro-islamabad-frontend.vercel.app", // safer to hardcode
-//   ],
-//   credentials: true,
-// }));
+// ✅ CORS setup to allow your frontend
 app.use(cors({
-  origin: "*",
+  origin: "https://micro-islamabad-frontend.vercel.app",
   credentials: true,
 }));
 
-// Adding express middleware
+// ✅ Basic middleware
 app.use(express.json());
 
-// Log origin AFTER cors
-app.use((req, res, next) => {
-  console.log("Incoming Request Origin:", req.headers.origin);
-  next();
+// ✅ Root route to test Railway health
+app.get("/", (req, res) => {
+  res.send("✅ MicroIslamabad Backend is working!");
 });
 
-if (process.env.NODE_ENV !== "test") {
-  connectToDatabase();
-}
+// ✅ Dummy test route to simulate API call
+app.get("/v1/test", (req, res) => {
+  res.json({
+    success: true,
+    message: "Test route reached successfully!",
+  });
+});
 
-// morgan + custom logger
-app.use(
-  morgan("combined", {
-    stream: {
-      write: (message) => logger.info(message.trim()),
-    },
-  })
-);
+// ❌ Skipping database connection temporarily
+// import { connectToDatabase } from "./config/db.js";
+// connectToDatabase(); // <-- commented out for debugging
 
-// Routes
-app.use("/api/v1/users", userRoutes);
-app.use("/api/v1/blogs", blogRoutes);
-
-// Error Handler
-app.use(errorHandler);
-
-// Start server
-const PORT = process.env.PORT || 3000;
+// ✅ Start server
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`✅ Server is running on port ${PORT}`);
 });
