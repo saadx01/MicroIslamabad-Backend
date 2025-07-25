@@ -16,12 +16,16 @@ console.log("Frontend url from env:", process.env.FRONTEND_URL);
 const app = express();
 
 // Seting up CORS very early
+// app.use(cors({
+//   origin: [
+//     "http://localhost:3000",
+//     "http://localhost:5173",
+//     "https://micro-islamabad-frontend.vercel.app", // safer to hardcode
+//   ],
+//   credentials: true,
+// }));
 app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "https://micro-islamabad-frontend.vercel.app", // safer to hardcode
-  ],
+  origin: "*",
   credentials: true,
 }));
 
