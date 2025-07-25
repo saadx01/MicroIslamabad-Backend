@@ -17,6 +17,8 @@ app.use(express.json());
 // configuring environment variables
 config();
 
+console.log("Frontend url from env:", process.env.FRONTEND_URL);
+
 app.use(
   cors({
     origin: [
