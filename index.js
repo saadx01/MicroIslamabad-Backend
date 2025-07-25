@@ -1,39 +1,56 @@
 import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
+import { connectToDatabase } from "./connections/db.js";
+import { config } from "dotenv";
+import userRoutes from "./routes/userRoute.js";
+import blogRoutes from "./routes/blogRoute.js";
 
-dotenv.config();
+import { errorHandler } from './middlewares/errorHandler.js';
+import morgan from "morgan";
+import logger from "./utils/logger.js";
+import cors from "cors";
+
 
 const app = express();
-
-// ✅ CORS setup to allow your frontend
-app.use(cors({
-  origin: "https://micro-islamabad-frontend.vercel.app",
-  credentials: true,
-}));
-
-// ✅ Basic middleware
 app.use(express.json());
 
-// ✅ Root route to test Railway health
-app.get("/", (req, res) => {
-  res.send("✅ MicroIslamabad Backend is working!");
-});
+// configuring environment variables
+config();
 
-// ✅ Dummy test route to simulate API call
-app.get("/v1/test", (req, res) => {
-  res.json({
-    success: true,
-    message: "Test route reached successfully!",
-  });
-});
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:5173",
+      process.env.FRONTEND_URL,
+    ],
+    credentials: true,
+  })
+);
 
-// ❌ Skipping database connection temporarily
-// import { connectToDatabase } from "./config/db.js";
-// connectToDatabase(); // <-- commented out for debugging
+if (process.env.NODE_ENV !== "test") {
+ connectToDatabase();
+}
 
-// ✅ Start server
+// app.use(morgan("dev")); // simple log to console
+app.use(
+  morgan("combined", {
+    stream: {
+      write: (message) => logger.info(message.trim()),
+    },
+  })
+);
+
+// app.get("/", (req, res) => {
+//   res.send("Welcome to MicroIslamabad Backend API");
+// });
+
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/blogs", blogRoutes);
+
+app.use(errorHandler); 
+
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-  console.log(`✅ Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
