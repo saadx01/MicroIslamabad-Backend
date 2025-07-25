@@ -9,37 +9,36 @@ import morgan from "morgan";
 import logger from "./utils/logger.js";
 import cors from "cors";
 
-
+// Load env variables first
+config();
+console.log("Frontend url from env:", process.env.FRONTEND_URL);
 
 const app = express();
+
+// Seting up CORS very early
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://micro-islamabad-frontend.vercel.app", // safer to hardcode
+  ],
+  credentials: true,
+}));
+
+// Adding express middleware
 app.use(express.json());
 
-// configuring environment variables
-config();
-
-console.log("Frontend url from env:", process.env.FRONTEND_URL);
+// Log origin AFTER cors
 app.use((req, res, next) => {
   console.log("Incoming Request Origin:", req.headers.origin);
   next();
 });
 
-
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "http://localhost:5173",
-      process.env.FRONTEND_URL,
-    ],
-    credentials: true,
-  })
-);
-
 if (process.env.NODE_ENV !== "test") {
- connectToDatabase();
+  connectToDatabase();
 }
 
-// app.use(morgan("dev")); // simple log to console
+// morgan + custom logger
 app.use(
   morgan("combined", {
     stream: {
@@ -48,13 +47,14 @@ app.use(
   })
 );
 
-
+// Routes
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/blogs", blogRoutes);
 
-app.use(errorHandler); 
+// Error Handler
+app.use(errorHandler);
 
-
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
